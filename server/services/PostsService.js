@@ -31,6 +31,7 @@ class PostsService {
   }
   async delete(id, email) {
     let post = await dbContext.Post.findByIdAndUpdate(id, { closed: true }, { new: true });
+    // @ts-ignore
     if (post.creatorEmail != email) {
       throw new UnAuthorized();
     }
