@@ -2,7 +2,7 @@ import { dbContext } from "../db/DbContext";
 import { BadRequest } from "../utils/Errors";
 
 class PostsService {
-  async findAll(query = {}) {
+  async getAll(query = {}) {
     let posts = await dbContext.Post.find(query).populate(
       "creator",
       "name picture"
@@ -12,4 +12,4 @@ class PostsService {
 
 }
 
-export const valuesService = new PostsService();
+export const postsService = new PostsService();

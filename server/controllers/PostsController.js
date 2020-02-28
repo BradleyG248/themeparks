@@ -1,6 +1,6 @@
 import express from "express";
 import BaseController from "../utils/BaseController";
-import { PostsService } from "../services/PostsService";
+import { postsService } from "../services/PostsService";
 import auth0Provider from "@bcwdev/auth0Provider";
 
 export class PostsController extends BaseController {
@@ -9,16 +9,16 @@ export class PostsController extends BaseController {
     this.router = express
       .Router()
       .get("", this.getAll)
-      .get("/:id", this.getById)
+      // .get("/:id", this.getById)
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .use(auth0Provider.getAuthorizedUserInfo)
-      .post("", this.create)
-      .put("/:id", this.edit)
-      .delete("/:id", this.delete);
+      .post("", this.create);
+    // .put("/:id", this.edit)
+    // .delete("/:id", this.delete);
   }
   async getAll(req, res, next) {
     try {
-      let data = PostsService.getAll();
+      let data = await postsService.getAll();
       return res.send(data);
     } catch (error) {
       next(error);
