@@ -1,10 +1,10 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light">
     <router-link class="navbar-brand" :to="{ name: 'Home' }"
-      >AppName</router-link
+      >Lagoon</router-link
     >
     <button
-      class="navbar-toggler"
+      class="navbar-toggler border-0"
       type="button"
       data-toggle="collapse"
       data-target="#navbarText"
@@ -21,6 +21,14 @@
             >Home</router-link
           >
         </li>
+        <li class="nav-item" :class="{ active: $route.name == 'Home' }">
+          <router-link :to="{ name: 'Home' }" class="nav-link"
+            >Posts</router-link
+          >
+        </li>
+        <li class="nav-item">
+          <add-post />
+        </li>
         <li
           class="nav-item"
           v-if="$auth.isAuthenticated"
@@ -32,6 +40,8 @@
         </li>
       </ul>
       <span class="navbar-text">
+        <input class="query mr-2" v-model="query" placeholder="search..."/>
+        <button class="btn btn-primary mr-4">search</button>
         <button
           class="btn btn-success"
           @click="login"
@@ -48,8 +58,14 @@
 <script>
 import axios from "axios";
 import { getUserData } from "@bcwdev/auth0-vue";
+import addPost from "../components/addPosts";
 export default {
   name: "Navbar",
+  data() {
+    return {
+      query: ""
+    }
+  },
   methods: {
     async login() {
       await this.$auth.loginWithPopup();
@@ -63,8 +79,22 @@ export default {
       this.$store.dispatch("resetBearer");
       this.$router.push({ name: "home" });
     }
+  },
+  components: {
+    addPost
   }
 };
 </script>
 
-<style></style>
+<style>
+.query {
+  max-width:50%;
+}
+nav{
+  background: rgb(186,27,29);
+background: linear-gradient(305deg, rgba(186,27,29,1) 0%, rgba(242,67,51,1) 100%);
+}
+button.navbar-toggler {
+  box-shadow: white
+}
+</style>

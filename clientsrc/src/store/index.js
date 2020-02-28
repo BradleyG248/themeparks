@@ -17,7 +17,9 @@ let api = Axios.create({
 
 export default new Vuex.Store({
   state: {
-    profile: {}
+    profile: {},
+    posts: [],
+
   },
   mutations: {
     setProfile(state, profile) {

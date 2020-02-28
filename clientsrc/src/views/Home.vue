@@ -1,12 +1,19 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <h1>Welcome to Your Vue.js App</h1>
+  <div class="home bg-info setting">
+    <img alt="" src="" />
+    <h1>Lagoon Parks</h1>
   </div>
 </template>
+
+
 
 <script>
 export default {
   name: "home"
 };
 </script>
+<style>
+.setting{
+  height: 100rem
+}
+</style>
