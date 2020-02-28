@@ -3,6 +3,7 @@ import BaseController from "../utils/BaseController";
 import { postsService } from "../services/PostsService";
 import auth0Provider from "@bcwdev/auth0Provider";
 
+
 export class PostsController extends BaseController {
   constructor() {
     super("api/posts");
@@ -26,8 +27,9 @@ export class PostsController extends BaseController {
   }
   async create(req, res, next) {
     try {
-      req.body.creator = req.user.email;
-      res.send(req.body);
+      req.body.creator = req.user.Info.email;
+      let post = await postsService.create(req.body);
+      res.send(post);
     } catch (error) {
       next(error);
     }

@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 const Post = new Schema(
   {
     title: { type: String, required: true },
-    closed: { type: Boolean, required: true, default: false },
-    votes: { type: Number, required: true },
+    closed: { type: Boolean, default: false },
+    votes: { type: Number, default: 0 },
     imgUrl: { type: String },
     description: { type: String, required: true },
     creatorEmail: { type: String, required: true },
