@@ -18,23 +18,22 @@ class PostsService {
     return await dbContext.Post.create(body);
 
   }
-  // async edit(id, body, email) {
-  //   let post = await dbContext.Post.findById(id);
-  //   // if (post["creator"] != email) {
-  //   //   throw new UnAuthorized();
-  //   // }
-  //   post = body;
-  //   await post.save();
-  //   return post;
-  // }
   async edit(id, update, email) {
     let post = await dbContext.Post.findByIdAndUpdate(id, update);
     // @ts-ignore
-    if (post.creator != email) {
+    if (post.creatorEmail != email) {
       throw new UnAuthorized();
     }
     // @ts-ignore
     post.body = update.body;
+    await post.save();
+    return post;
+  }
+  async delete(id, email) {
+    let post = await dbContext.Post.findByIdAndUpdate(id, { closed: true }, { new: true });
+    if (post.creatorEmail != email) {
+      throw new UnAuthorized();
+    }
     await post.save();
     return post;
   }

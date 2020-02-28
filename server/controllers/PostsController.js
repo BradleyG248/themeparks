@@ -15,8 +15,8 @@ export class PostsController extends BaseController {
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .use(auth0Provider.getAuthorizedUserInfo)
       .post("", this.create)
-      .put("/:id", this.edit);
-    // .delete("/:id", this.delete);
+      .put("/:id", this.edit)
+      .delete("/:id", this.delete);
   }
   async getAll(req, res, next) {
     try {
@@ -46,6 +46,14 @@ export class PostsController extends BaseController {
   async edit(req, res, next) {
     try {
       let data = await postsService.edit(req.params.id, req.body, req.userInfo.email);
+      res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async delete(req, res, next) {
+    try {
+      let data = await postsService.delete(req.params.id, req.userInfo.email);
       res.send(data);
     } catch (error) {
       next(error);
