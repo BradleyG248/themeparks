@@ -40,6 +40,9 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error);
       }
+    },
+    async createPosts({ commit }) {
+      
     }
   }
 });
