@@ -17,7 +17,9 @@ let api = Axios.create({
 
 export default new Vuex.Store({
   state: {
-    profile: {}
+    profile: {},
+    posts: [],
+
   },
   mutations: {
     setProfile(state, profile) {
@@ -38,6 +40,9 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error);
       }
+    },
+    async createPosts({ commit }) {
+      
     }
   }
 });
