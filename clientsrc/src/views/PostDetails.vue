@@ -1,40 +1,40 @@
 <template>
   <div class="post-details">
-    <img :src="details.imgUrl" alt="">
+    <img :src="details.imgUrl" alt />
     <h1>{{details.title}}</h1>
     <p>{{details.description}}</p>
-    <comment/>
+    <comment v-for="(commentObj) in comments" :key="commentObj.id" :commentData="commentObj" />
+    <comment />
   </div>
 </template>
 
 
 
 <script>
-import Post from "../components/post"
+import Post from "../components/post";
+import Comment from "../components/comment";
 export default {
   name: "PostDetails",
-  data(){
+  data() {
     return {
-      postData:{}
-    }
+      postData: {}
+    };
   },
-  components:{
+  components: {
     Post,
     Comment
   },
-  mounted(){
+  mounted() {
     this.$store.dispatch("getPostById", this.$route.params.postId);
-    },
-  computed:{
-    details(){
-      console.log(this.$route.params.postId)
-      return this.$store.state.activePost
+    this.$store.dispatch("getComments");
+  },
+  computed: {
+    details() {
+      console.log(this.$route.params.postId);
+      return this.$store.state.activePost;
     }
   }
 };
 </script>
 <style>
-
-
-
 </style>

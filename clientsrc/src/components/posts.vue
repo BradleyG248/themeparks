@@ -3,44 +3,35 @@
     <div class="container">
       <h1>These are posts!</h1>
       <div class="row">
-        <post v-for="(postObj) in posts"
-        :key="postObj.id"
-        :postData="postObj"
-        />
+        <post v-for="(postObj) in posts" :key="postObj.id" :postData="postObj" />
       </div>
+      <div class="row"></div>
     </div>
   </div>
 </template>
 
 
 <script>
-import Post from "../components/post.vue"
+import Post from "../components/post.vue";
 export default {
-  name: 'Posts',
-  data(){
-    return {
-
-    }
+  name: "Posts",
+  data() {
+    return {};
   },
-  computed:{
-    posts(){
+  computed: {
+    posts() {
       let data = this.$store.state.posts;
       return data;
     }
   },
-  methods:{
-
-  },
-  components:{
+  methods: {},
+  components: {
     Post
   },
-  mounted(){
-    
-  }
-}
+  mounted() {}
+};
 </script>
 
 
 <style scoped>
-
 </style>
