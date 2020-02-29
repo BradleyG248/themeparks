@@ -3,7 +3,9 @@
     <img height="400" class="pic-size" :src="details.imgUrl" alt />
     <h1>{{details.title}}</h1>
     <p>{{details.description}}</p>
-    <comments />
+    <div>
+      <comments />
+    </div>
   </div>
 </template>
 

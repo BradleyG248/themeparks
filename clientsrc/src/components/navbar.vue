@@ -1,8 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light">
-    <router-link class="navbar-brand" :to="{ name: 'Home' }"
-      >Lagoon</router-link
-    >
+    <router-link class="navbar-brand pl-3 pr-3" :to="{ name: 'Home' }">Lagoon</router-link>
     <button
       class="navbar-toggler border-0"
       type="button"
@@ -16,40 +14,26 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
+        <li class="nav-item" :class="{ active: $route.name == 'Home' }"></li>
         <li class="nav-item" :class="{ active: $route.name == 'Home' }">
-          <router-link :to="{ name: 'Home' }" class="nav-link"
-            >Home</router-link
-          >
+          <router-link :to="{ name: 'Home' }" class="nav-link">Posts</router-link>
         </li>
-        <li class="nav-item" :class="{ active: $route.name == 'Home' }">
-          <router-link :to="{ name: 'Home' }" class="nav-link"
-            >Posts</router-link
-          >
-        </li>
-        <li class="nav-item">
+        <li class="nav-item pl-3">
           <add-post />
         </li>
         <li
-          class="nav-item"
+          class="nav-item pl-3"
           v-if="$auth.isAuthenticated"
           :class="{ active: $route.name == 'Profile' }"
         >
-          <router-link class="nav-link" :to="{ name: 'Profile' }"
-            >Profile</router-link
-          >
+          <router-link class="nav-link" :to="{ name: 'Profile' }">Profile</router-link>
         </li>
       </ul>
       <span class="navbar-text">
-        <input class="query mr-2" v-model="query" placeholder="search..."/>
-        <button class="btn btn-primary mr-4">search</button>
-        <button
-          class="btn btn-success"
-          @click="login"
-          v-if="!$auth.isAuthenticated"
-        >
-          Login
-        </button>
-        <button class="btn btn-danger" @click="logout" v-else>logout</button>
+        <input class="query mr-2" v-model="query" placeholder="  search..." />
+        <button class="btn btn-primary mr-4">GO</button>
+        <button class="btn btn-success mr-4" @click="login" v-if="!$auth.isAuthenticated">Login</button>
+        <button class="btn btn-danger mr-4" @click="logout" v-else>logout</button>
       </span>
     </div>
   </nav>
@@ -64,7 +48,7 @@ export default {
   data() {
     return {
       query: ""
-    }
+    };
   },
   methods: {
     async login() {
@@ -88,13 +72,17 @@ export default {
 
 <style>
 .query {
-  max-width:50%;
+  max-width: 50%;
 }
-nav{
-  background: rgb(186,27,29);
-background: linear-gradient(305deg, rgba(186,27,29,1) 0%, rgba(242,67,51,1) 100%);
+nav {
+  background: rgb(186, 27, 29);
+  background: linear-gradient(
+    305deg,
+    rgba(186, 27, 29, 1) 0%,
+    rgba(242, 67, 51, 1) 100%
+  );
 }
 button.navbar-toggler {
-  box-shadow: white
+  box-shadow: white;
 }
 </style>
