@@ -14,6 +14,10 @@ export default {
   name: "Home",
   components:{
     Posts
+  },
+  mounted(){
+    console.log("hi")
+    this.$store.dispatch("getPosts")
   }
 };
 </script>

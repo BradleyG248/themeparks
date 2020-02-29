@@ -1,15 +1,15 @@
 <template>
   <div class="component">
     <div class="col-12 col-md-6">
-      <router-link :to="{ name:'PostDetails', params:{postId: this.postData._id}}">
       <div class="card" style="width: 18rem;">
-        <img class="card-img-top" :src="postData.imgUrl" alt="Card image cap">
+        <router-link :to="{ name:'PostDetails', params:{postId: this.postData._id}}">
+          <img class="card-img-top" :src="postData.imgUrl" alt="Card image cap">
+        </router-link>
         <div class="card-body">
           <h5 class="card-title">{{postData.title}}</h5>
           <p class="card-text">{{postData.description}}</p>
           </div>
       </div>
-      </router-link>
     </div>
   </div>
 </template>
