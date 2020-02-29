@@ -1,28 +1,28 @@
 <template>
   <div class="home bg-info setting">
-    <img alt="" src="" />
+    <img alt src />
     <h1>Lagoon Parks</h1>
-    <posts/>
+    <posts />
   </div>
 </template>
 
 
 
 <script>
-import Posts from "../components/posts"
+import Posts from "../components/posts";
 export default {
   name: "Home",
-  components:{
+  components: {
     Posts
   },
-  mounted(){
-    console.log("hi")
-    this.$store.dispatch("getPosts")
+  mounted() {
+    console.log("hi");
+    this.$store.dispatch("getPosts");
   }
 };
 </script>
 <style>
-.setting{
-  height: 100rem
+.setting {
+  height: 100rem;
 }
 </style>

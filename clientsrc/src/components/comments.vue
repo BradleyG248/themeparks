@@ -1,8 +1,9 @@
 <template>
   <div class="component">
     <div class="container">
+      <h1>These are Comments!</h1>
       <div class="row">
-        <post v-for="(postObj) in posts" :key="postObj.id" :postData="postObj" />
+        <comment v-for="(commentObj) in comments" :key="commentObj.id" :commentData="commentObj" />
       </div>
       <div class="row"></div>
     </div>
@@ -11,21 +12,21 @@
 
 
 <script>
-import Post from "../components/post.vue";
+import Comment from "../components/comment.vue";
 export default {
-  name: "Posts",
+  name: "Comments",
   data() {
     return {};
   },
   computed: {
-    posts() {
-      let data = this.$store.state.posts;
+    comments() {
+      let data = this.$store.state.comments;
       return data;
     }
   },
   methods: {},
   components: {
-    Post
+    Comment
   },
   mounted() {}
 };

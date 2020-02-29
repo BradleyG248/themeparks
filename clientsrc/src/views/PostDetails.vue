@@ -1,4 +1,5 @@
 <template>
+
   <div class="post-details">
     <h1 v-if="details.closed">This post has been deleted!</h1>
     <div v-if="!details.closed">
@@ -11,20 +12,25 @@
     <h4>{{details.votes}} votes</h4>
     </div>
     <comment/>
+
   </div>
 </template>
 
 
 
 <script>
-import Post from "../components/post"
+import Post from "../components/post";
+import Comments from "../components/comments";
+
 export default {
   name: "PostDetails",
-  data(){
+  data() {
     return {
-      postData:{}
-    }
+      postData: {},
+      commentData: {}
+    };
   },
+
   methods:{
     delete(){
       this.$store.dispatch("deletePostById", this.$route.params.postId)
@@ -37,20 +43,27 @@ export default {
   },
   components:{
     Post,
-    Comment
+    Comments
   },
+
   mounted(){
     let post = this.$store.dispatch("getPostById", this.$route.params.postId);
     },
   computed:{
     details(){
+
+  mounted() {
+    this.$store.dispatch("getPostById", this.$route.params.postId);
+    this.$store.dispatch("getComments");
+  },
+  computed: {
+    details() {
+      console.log(this.$route.params.postId);
+
       return this.$store.state.activePost;
     }
   }
 };
 </script>
 <style>
-
-
-
 </style>
