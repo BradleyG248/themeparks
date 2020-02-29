@@ -1,6 +1,6 @@
 <template>
   <div class="component">
-    <div class="col-12 col-md-6">
+    <div v-if="!postData.closed" class="col-12 col-md-6">
       <div class="card" style="width: 18rem;">
         <router-link :to="{ name:'PostDetails', params:{postId: this.postData._id}}">
           <img class="card-img-top" :src="postData.imgUrl" alt="Card image cap">
