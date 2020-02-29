@@ -19,6 +19,11 @@ let pApi = Axios.create({
   timeout: 3000,
   withCredentials: true
 });
+let vApi = Axios.create({
+  baseURL: baseUrl + "api/posts/vote",
+  timeout: 3000,
+  withCredentials: true
+});
 let cApi = Axios.create({
   baseURL: baseUrl + "api/comments",
   timeout: 3000,
@@ -31,7 +36,6 @@ export default new Vuex.Store({
     posts: [],
     comments: [],
     activePost: {}
-
   },
   mutations: {
     setProfile(state, profile) {
@@ -53,6 +57,8 @@ export default new Vuex.Store({
   actions: {
     setBearer({}, bearer) {
       api.defaults.headers.authorization = bearer;
+      pApi.defaults.headers.authorization = bearer;
+      cApi.defaults.headers.authorization = bearer;
     },
     resetBearer() {
       api.defaults.headers.authorization = "";
@@ -61,14 +67,17 @@ export default new Vuex.Store({
       try {
         let res = await api.get("profile");
         commit("setProfile", res.data);
+        console.log(res.data)
       } catch (error) {
         console.error(error);
       }
     },
     async createPost({ commit }, post) {
       try {
-        let res = await pApi.post(post);
-        commit("addPost", post)
+        console.log("This is totally working!")
+        console.log(post)
+        let res = await pApi.post("", post);
+        commit("addPost", res.data)
       } catch (error) {
         console.error(error)
       }
@@ -85,13 +94,29 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
+    async deletePostById({commit}, id){
+      let res = await pApi.delete(id);
+      console.log(res)
+      commit("setActivePost", null)
+      router.push({name:"Home"})
+      return res;
+    },
     async getPosts({commit}){
       try {
         let res = await pApi.get("");
+        debugger
         commit("setPosts",res.data)
       } catch (error) {
         console.error(error)
       }
+    },
+    async voteById({commit}, votes){
+      console.log(`/vote/${votes.id}`)
+      console.log(votes)
+      let res = await pApi.put("/" + votes.id + "/vote", votes)
+      let posts = await pApi.get("");
+      // console.log(res);
+      commit("setPosts", posts);
     }
   },
   

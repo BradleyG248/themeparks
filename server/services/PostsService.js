@@ -4,6 +4,7 @@ import { BadRequest, UnAuthorized } from "../utils/Errors";
 
 
 class PostsService {
+  
   async getAll(query = {}) {
     let posts = await dbContext.Post.find(query).populate(
       "creator",
@@ -28,6 +29,10 @@ class PostsService {
     post.body = update.body;
     await post.save();
     return post;
+  }
+ async editVotes(id, data) {
+ let post = await dbContext.Post.findByIdAndUpdate(id,{votes: data}, {new:true})
+ return post
   }
   async delete(id, email) {
     let post = await dbContext.Post.findByIdAndUpdate(id, { closed: true }, { new: true });
