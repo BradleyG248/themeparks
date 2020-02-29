@@ -4,17 +4,18 @@ import { commentsService } from "../services/CommentsService";
 import auth0Provider from "@bcwdev/auth0Provider";
 
 export class CommentsController extends BaseController {
+
   constructor() {
     super("api/comments");
     this.router = express
       .Router()
       .get("", this.getAll)
-      // .get("/:id", this.getById)
+      .get("/:id", this.getById)
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .use(auth0Provider.getAuthorizedUserInfo)
-      .post("", this.create);
-    // .put("/:id", this.edit)
-    // .delete("/:id", this.delete);
+      .post("", this.create)
+      .put("/:id", this.edit)
+      .delete("/:id", this.delete);
   }
   async getAll(req, res, next) {
     try {
@@ -24,10 +25,35 @@ export class CommentsController extends BaseController {
       next(error);
     }
   }
+  async getById(req, res, next) {
+    try {
+      let data = await commentsService.getById(req.params.id);
+      res.status(201).send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
   async create(req, res, next) {
     try {
-      req.body.creator = req.user.email;
-      res.send(req.body);
+      req.body.creatorEmail = req.userInfo.email;
+      let post = await commentsService.create(req.body);
+      res.send(post);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async edit(req, res, next) {
+    try {
+      let data = await commentsService.edit(req.params.id, req.body, req.userInfo.email);
+      res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async delete(req, res, next) {
+    try {
+      let data = await commentsService.delete(req.params.id, req.userInfo.email);
+      res.send(data);
     } catch (error) {
       next(error);
     }

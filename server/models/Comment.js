@@ -5,7 +5,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 const Comment = new Schema(
   {
     postId: { type: ObjectId, ref: "Post", required: true },
-    votes: { type: Number, required: true },
+    votes: { type: Number, default: 0 },
     description: { type: String, required: true },
     creatorEmail: { type: String, required: true },
   },
