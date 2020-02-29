@@ -9,11 +9,11 @@ let baseUrl = location.host.includes("localhost")
   ? "http://localhost:3000/"
   : "/";
 
-  let api = Axios.create({
-    baseURL: baseUrl + "api",
-    timeout: 3000,
-    withCredentials: true 
-  });
+let api = Axios.create({
+  baseURL: baseUrl + "api",
+  timeout: 3000,
+  withCredentials: true
+});
 let pApi = Axios.create({
   baseURL: baseUrl + "api/posts",
   timeout: 3000,
@@ -37,21 +37,24 @@ export default new Vuex.Store({
     setProfile(state, profile) {
       state.profile = profile;
     },
-    addPost(state,post){
+    addPost(state, post) {
       state.posts.push(post)
     },
-    addComment(state,comment){
+    addComment(state, comment) {
       state.comments.push(comment)
     },
-    setPosts(state,posts){
+    setPosts(state, posts) {
       state.posts = posts;
     },
-    setActivePost(state, post){
+    setComments(state, comment) {
+      state.comments = comment;
+    },
+    setActivePost(state, post) {
       state.activePost = post
     }
   },
   actions: {
-    setBearer({}, bearer) {
+    setBearer({ }, bearer) {
       api.defaults.headers.authorization = bearer;
     },
     resetBearer() {
@@ -73,7 +76,7 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
-    async getPostById({commit}, id){
+    async getPostById({ commit }, id) {
       try {
         let res = await pApi.get(id);
         console.log(id);
@@ -85,14 +88,22 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
-    async getPosts({commit}){
+    async getPosts({ commit }) {
       try {
         let res = await pApi.get("");
-        commit("setPosts",res.data)
+        commit("setPosts", res.data)
       } catch (error) {
         console.error(error)
       }
+    },
+    async getComments({ commit }) {
+      try {
+        let res = await cApi.get("");
+        commit("setComments", res.data);
+      } catch (error) {
+        console.log(error);
+      }
     }
   },
-  
+
 });
