@@ -1,7 +1,6 @@
 <template>
   <div class="component">
     <div class="container">
-      <!-- <h1>These are Comments!</h1> -->
       <div class="row">
         <comment v-for="commentObj in comments" :key="commentObj.id" :commentData="commentObj" />
       </div>

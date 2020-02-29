@@ -2,15 +2,14 @@
   <div class="component">
     <div class="col-12 col-md-6 p-2">
       <div class="card" style="width: 17rem; height: 28rem;">
-    <div v-if="!postData.closed" class="col-12 col-md-6 p-2">
-      <div class="card" style="width: 17rem; height: 28rem;">
-
-        <router-link :to="{ name:'PostDetails', params:{postId: this.postData._id}}">
-          <img class="card-img-top" :src="postData.imgUrl" alt="Card image cap" />
-        </router-link>
-        <div class="card-body">
-          <h5 class="card-title">{{postData.title}}</h5>
-          <p class="card-text">{{postData.description}}</p>
+        <div v-if="!postData.closed">
+          <router-link :to="{ name:'PostDetails', params:{postId: this.postData._id}}">
+            <img class="card-img-top" :src="postData.imgUrl" alt="Card image cap" />
+          </router-link>
+          <div class="card-body">
+            <h5 class="card-title">{{postData.title}}</h5>
+            <p class="card-text">{{postData.description}}</p>
+          </div>
         </div>
       </div>
     </div>
