@@ -1,23 +1,23 @@
 <template>
   <div class="component">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#post-creator">create post</button>
-    <div class="modal" tabindex="-1" role="dialog" id="post-creator">
+    <div class="modal" tabindex="-1" role="dialog" id="post-creator" @submit.prevent="createPost">
       <div class="modal-dialog" role="document">
         <div class="modal-content rounded input-group-default">
           <div class="modal-header d-flex flex-column">
             <h2>Title</h2>
-            <input class="modal-title rounded form-control" placeholder="Hyped?" aria-describedby="inputGroup-sizing-default" />
+            <input class="modal-title rounded form-control" placeholder="Hyped?" aria-describedby="inputGroup-sizing-default" v-model="newPost.title"/>
           </div>
           <div class="modal-body">
             <h3>Description</h3>
-            <input class="rounded form-control" placeholder="Elaborate..." />
+            <input class="rounded form-control" placeholder="Elaborate..." v-model="newPost.description"/>
           </div>
           <div class="modal-body">
             <h3>Image</h3>
-            <input class="rounded form-control" placeholder="Hands in the air like you just don't care" />
+            <input class="rounded form-control" placeholder="Hands in the air like you just don't care" v-model="newPost.imgUrl" />
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
@@ -31,11 +31,21 @@
 export default {
   name: 'AddPost',
   data(){
-    return {}
+    return {
+      newPost:{}
+    }
   },
-  computed:{},
-  methods:{},
-  components:{}
+  computed:{
+
+  },
+  methods:{
+    createPost(){
+      this.$store.dispatch("createPost", this.newPost)
+    }
+  },
+  components:{
+
+  }
 }
 </script>
 

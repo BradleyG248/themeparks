@@ -2,14 +2,19 @@
   <div class="home bg-info setting">
     <img alt="" src="" />
     <h1>Lagoon Parks</h1>
+    <posts/>
   </div>
 </template>
 
 
 
 <script>
+import Posts from "../components/posts"
 export default {
-  name: "home"
+  name: "Home",
+  components:{
+    Posts
+  }
 };
 </script>
 <style>
