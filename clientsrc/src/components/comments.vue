@@ -1,11 +1,11 @@
 <template>
   <div class="component">
     <div class="container">
-      <h1>These are Comments!</h1>
+      <!-- <h1>These are Comments!</h1> -->
       <div class="row">
-        <comment v-for="(commentObj) in comments" :key="commentObj.id" :commentData="commentObj" />
+        <comment v-for="commentObj in comments" :key="commentObj.id" :commentData="commentObj" />
       </div>
-      <div class="row"></div>
+      <div class="row pt-3 mt-3"></div>
     </div>
   </div>
 </template>

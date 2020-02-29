@@ -1,15 +1,13 @@
 <template>
-  <div class="component">
-    <div class="col-12 col-md-6">
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">{{commentData.description}}</h5>
-          <p class="card-text">{{commentData.votes}}</p>
-          <p class="card-text">{{commentData.creatorEmail}}</p>
-        </div>
+  <!-- <div class="component"> -->
+  <div class="col-12">
+    <div class="row pb-1">
+      <div class="comment-body">
+        <h6>{{commentData.description}} -- {{commentData.creatorEmail}} -- Votes: {{commentData.votes}}</h6>
       </div>
     </div>
   </div>
+  <!-- </div> -->
 </template>
 
 
@@ -28,4 +26,15 @@ export default {
 
 
 <style scoped>
+.comment-body {
+  width: 65vw;
+  font-size: 0.6rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  text-shadow: 1px 1px 7px black;
+  padding: 0.5rem;
+  border-radius: 25px;
+  border: 2px solid black;
+  text-align: center;
+}
 </style>

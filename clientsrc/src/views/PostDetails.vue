@@ -1,18 +1,16 @@
 <template>
-
-  <div class="post-details">
+  <div class="post-details text-center pt-3">    
     <h1 v-if="details.closed">This post has been deleted!</h1>
     <div v-if="!details.closed">
     <h1>{{details.title}}</h1>
     <p>{{details.description}}</p>
-    <img :src="details.imgUrl" alt="">
+    <img height="400" class="pic-size" :src="details.imgUrl" alt="">
     <button class="btn btn-success" @click="vote(details.votes++)">+</button>
     <button class="btn btn-info" @click="vote(details.votes--)">-</button>
     <button class="btn btn-danger" @click="this.delete" >Delete!</button>
     <h4>{{details.votes}} votes</h4>
     </div>
-    <comment/>
-
+    <comments/>
   </div>
 </template>
 
@@ -65,5 +63,5 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 </style>
