@@ -1,10 +1,9 @@
 <template>
-  <div class="post-details">
+  <div class="postDetails">
     <img :src="details.imgUrl" alt />
     <h1>{{details.title}}</h1>
     <p>{{details.description}}</p>
-    <comment v-for="(commentObj) in comments" :key="commentObj.id" :commentData="commentObj" />
-    <comment />
+    <comments />
   </div>
 </template>
 
@@ -12,17 +11,19 @@
 
 <script>
 import Post from "../components/post";
-import Comment from "../components/comment";
+import Comments from "../components/comments";
+
 export default {
   name: "PostDetails",
   data() {
     return {
-      postData: {}
+      postData: {},
+      commentData: {}
     };
   },
   components: {
     Post,
-    Comment
+    Comments
   },
   mounted() {
     this.$store.dispatch("getPostById", this.$route.params.postId);

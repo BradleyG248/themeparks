@@ -1,0 +1,37 @@
+<template>
+  <div class="component">
+    <div class="container">
+      <h1>These are Comments!</h1>
+      <div class="row">
+        <comment v-for="(commentObj) in comments" :key="commentObj.id" :commentData="commentObj" />
+      </div>
+      <div class="row"></div>
+    </div>
+  </div>
+</template>
+
+
+<script>
+import Comment from "../components/comment.vue";
+export default {
+  name: "Comments",
+  data() {
+    return {};
+  },
+  computed: {
+    comments() {
+      let data = this.$store.state.comments;
+      return data;
+    }
+  },
+  methods: {},
+  components: {
+    Comment
+  },
+  mounted() {}
+};
+</script>
+
+
+<style scoped>
+</style>

@@ -1,31 +1,28 @@
 <template>
-  <div class="comment-component">
-    <div class="container">
-      <div class="row">
-        <comment v-for="(commentObj) in comments" :key="commentObj.id" :postData="commentObj" />
+  <div class="component">
+    <div class="col-12 col-md-6">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{commentData.description}}</h5>
+          <p class="card-text">{{commentData.votes}}</p>
+          <p class="card-text">{{commentData.creatorEmail}}</p>
+        </div>
       </div>
-      <div class="row"></div>
     </div>
   </div>
 </template>
 
 
 <script>
-// import Comment from "../components/post.vue";
 export default {
-  name: "Comments",
+  name: "Comment",
+  props: ["commentData"],
   data() {
     return {};
   },
-  computed: {
-    posts() {
-      let data = this.$store.state.comments;
-      return data;
-    }
-  },
+  computed: {},
   methods: {},
-  components: {},
-  mounted() {}
+  components: {}
 };
 </script>
 
