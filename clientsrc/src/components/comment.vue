@@ -1,7 +1,7 @@
 <template>
   <div class="comment">
     <div class="col-12">
-      <p class="comment-text"></p>
+      <p class="comment-text">{{commentData.description}}</p>
     </div>
   </div>
 </template>
