@@ -42,10 +42,10 @@ export default new Vuex.Store({
       state.profile = profile;
     },
     addPost(state, post) {
-      state.posts.push(post)
+      state.posts.push(post);
     },
     addComment(state, comment) {
-      state.comments.push(comment)
+      state.comments.push(comment);
     },
     setPosts(state, posts) {
       state.posts = posts;
@@ -54,7 +54,7 @@ export default new Vuex.Store({
       state.comments = comment;
     },
     setActivePost(state, post) {
-      state.activePost = post
+      state.activePost = post;
     }
   },
   actions: {
@@ -70,19 +70,19 @@ export default new Vuex.Store({
       try {
         let res = await api.get("profile");
         commit("setProfile", res.data);
-        console.log(res.data)
+        console.log(res.data);
       } catch (error) {
         console.error(error);
       }
     },
     async createPost({ commit }, post) {
       try {
-        console.log("This is totally working!")
-        console.log(post)
+        console.log("This is totally working!");
+        console.log(post);
         let res = await pApi.post("", post);
-        commit("addPost", res.data)
+        commit("addPost", res.data);
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
     },
     async getPostById({ commit }, id) {
@@ -91,39 +91,38 @@ export default new Vuex.Store({
         console.log(id);
 
         //let newPost = res.data.findById({p => id._id = p.id});
-        commit("setActivePost", res.data)
-        console.log(res.data)
+        commit("setActivePost", res.data);
+        console.log(res.data);
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
     },
 
-    async deletePostById({commit}, id){
+    async deletePostById({ commit }, id) {
       let res = await pApi.delete(id);
-      console.log(res)
-      commit("setActivePost", null)
-      router.push({name:"Home"})
+      console.log(res);
+      commit("setActivePost", null);
+      router.push({ name: "Home" });
       return res;
     },
-    async getPosts({commit}){
+    async getPosts({ commit }) {
       try {
         let res = await pApi.get("");
-        debugger
-        commit("setPosts",res.data)
+        commit("setPosts", res.data);
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
     },
 
-    async voteById({commit}, votes){
-      console.log(`/vote/${votes.id}`)
-      console.log(votes)
-      let res = await pApi.put("/" + votes.id + "/vote", votes)
+    async voteById({ commit }, votes) {
+      console.log(`/vote/${votes.id}`);
+      console.log(votes);
+      let res = await pApi.put("/" + votes.id + "/vote", votes);
       let posts = await pApi.get("");
       // console.log(res);
       commit("setPosts", posts);
-    }
-     async getComments({ commit }) {
+    },
+    async getComments({ commit }) {
       try {
         let res = await cApi.get("");
         commit("setComments", res.data);
