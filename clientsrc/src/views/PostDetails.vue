@@ -1,6 +1,6 @@
 <template>
-  <div class="postDetails">
-    <img :src="details.imgUrl" alt />
+  <div class="postDetails text-center pt-3">
+    <img height="400" class="pic-size" :src="details.imgUrl" alt />
     <h1>{{details.title}}</h1>
     <p>{{details.description}}</p>
     <comments />
@@ -37,5 +37,5 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 </style>

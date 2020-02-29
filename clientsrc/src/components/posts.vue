@@ -1,7 +1,7 @@
 <template>
   <div class="component">
     <div class="container">
-      <h1>These are posts!</h1>
+      <!-- <h1>These are posts!</h1> -->
       <div class="row">
         <post v-for="(postObj) in posts" :key="postObj.id" :postData="postObj" />
       </div>

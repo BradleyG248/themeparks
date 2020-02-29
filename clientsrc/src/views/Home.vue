@@ -1,7 +1,7 @@
 <template>
   <div class="home bg-info setting">
     <img alt src />
-    <h1>Lagoon Parks</h1>
+    <h1 class="text-center">Lagoon Park</h1>
     <posts />
   </div>
 </template>
