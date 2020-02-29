@@ -3,6 +3,7 @@ import { BadRequest, UnAuthorized } from "../utils/Errors";
 
 
 class CommentsService {
+
   async getAll(query = {}) {
     let comments = await dbContext.Comment.find(query).populate(
       "creator",
@@ -35,6 +36,9 @@ class CommentsService {
       throw new UnAuthorized();
     }
     await dbContext.Comment.findByIdAndDelete(id);
+  }
+  async getCommentsByPostId(id) {
+    return await dbContext.Comment.find({ postId: id });
   }
 }
 
