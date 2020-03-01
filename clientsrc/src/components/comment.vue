@@ -4,6 +4,8 @@
     <div class="row pb-1">
       <div class="comment-body">
         <h6>{{commentData.description}} -- {{commentData.creatorEmail}} -- Votes: {{commentData.votes}}</h6>
+        <img src alt />
+        <img src alt />
       </div>
     </div>
   </div>

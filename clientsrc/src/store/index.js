@@ -85,6 +85,14 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
+    async createComment({ commit }, comment) {
+      try {
+        let res = await cApi.post("", comment);
+        commit("addComment", res.data);
+      } catch (error) {
+        console.error(error)
+      }
+    },
     async getPostById({ commit }, id) {
       try {
         let res = await pApi.get(id);
