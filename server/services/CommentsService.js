@@ -11,6 +11,14 @@ class CommentsService {
     );
     return comments;
   }
+  async vote(data, id) {
+    let update = { votes: data.votes }
+    let comment = await dbContext.Comment.findByIdAndUpdate(id, update);
+    // @ts-ignore
+    comment.body = update.body;
+    await comment.save();
+    return comment;
+  }
   async getById(id) {
     return await dbContext.Comment.findById(id);
   }

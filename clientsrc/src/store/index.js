@@ -85,6 +85,14 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
+    async createComment({ commit }, comment) {
+      try {
+        let res = await cApi.post("", comment);
+        commit("addComment", res.data);
+      } catch (error) {
+        console.error(error)
+      }
+    },
     async getPostById({ commit }, id) {
       try {
         let res = await pApi.get(id);
@@ -105,6 +113,13 @@ export default new Vuex.Store({
       router.push({ name: "Home" });
       return res;
     },
+    async deleteCommentById({ commit }, id) {
+      let res = await cApi.delete(id);
+      let comments = await cApi.get("")
+      commit("setComments", comments.data);
+      console.log(res);
+      return res;
+    },
     async getPosts({ commit }) {
       try {
         let res = await pApi.get("");
@@ -115,12 +130,17 @@ export default new Vuex.Store({
     },
 
     async voteById({ commit }, votes) {
-      console.log(`/vote/${votes.id}`);
-      console.log(votes);
       let res = await pApi.put("/" + votes.id + "/vote", votes);
       let posts = await pApi.get("");
       // console.log(res);
       commit("setPosts", posts);
+    },
+    async voteComment({ commit }, votes) {
+      let res = await cApi.put("/" + votes.id + "/vote", votes);
+      let comments = await cApi.get("");
+      commit("setComments", comments.data)
+      console.log(comments)
+
     },
     async getComments({ commit }) {
       try {

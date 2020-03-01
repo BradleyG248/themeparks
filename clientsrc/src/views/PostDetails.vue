@@ -10,6 +10,7 @@
       <button class="btn btn-danger" @click="this.delete">Delete!</button>
       <h4>{{details.votes}} votes</h4>
     </div>
+    <create-comment />
     <comments />
   </div>
 </template>
@@ -19,6 +20,7 @@
 <script>
 import Post from "../components/post";
 import Comments from "../components/comments";
+import CreateComment from "../components/createComment";
 
 export default {
   name: "PostDetails",
@@ -41,7 +43,8 @@ export default {
   },
   components: {
     Post,
-    Comments
+    Comments,
+    CreateComment
   },
   mounted() {
     let post = this.$store.dispatch("getPostById", this.$route.params.postId);

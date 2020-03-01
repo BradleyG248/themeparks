@@ -1,13 +1,16 @@
 <template>
-  <!-- <div class="component"> -->
-  <div class="col-12">
-    <div class="row pb-1">
-      <div class="comment-body">
-        <h6>{{commentData.description}} -- {{commentData.creatorEmail}} -- Votes: {{commentData.votes}}</h6>
+  <div class="component">
+    <div class="col-12">
+      <div class="row pb-1">
+        <div class="comment-body">
+          <h6>{{comment.description}} -- {{comment.creatorEmail}} -- Votes: {{comment.votes}}</h6>
+          <button class="btn btn-success" @click="vote(comment.votes+1)">+</button>
+          <button class="btn btn-warning" @click="vote(comment.votes -1)">-</button>
+        </div>
+        <button class="btn btn-danger" @click="destroy()">Delete</button>
       </div>
     </div>
   </div>
-  <!-- </div> -->
 </template>
 
 
@@ -16,10 +19,28 @@ export default {
   name: "Comment",
   props: ["commentData"],
   data() {
-    return {};
+    return {
+      votes: this.commentData.votes
+    };
   },
-  computed: {},
-  methods: {},
+  computed: {
+    comment() {
+      let comment = this.commentData;
+      return comment;
+    }
+  },
+  methods: {
+    destroy() {
+      this.$store.dispatch("deleteCommentById", this.comment.id);
+    },
+    vote(vote) {
+      console.log(this.CommentData);
+      this.comment.votes = vote;
+      let data = { votes: vote, id: this.commentData.id };
+      console.log(data);
+      this.$store.dispatch("voteComment", data);
+    }
+  },
   components: {}
 };
 </script>

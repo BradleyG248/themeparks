@@ -11,6 +11,7 @@ export class CommentsController extends BaseController {
       .Router()
       .get("", this.getAll)
       .get("/:id", this.getById)
+      .put("/:id/vote", this.vote)
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .use(auth0Provider.getAuthorizedUserInfo)
       .post("", this.create)
@@ -23,6 +24,14 @@ export class CommentsController extends BaseController {
       return res.send(data);
     } catch (error) {
       next(error);
+    }
+  }
+  async vote(req, res, next) {
+    try {
+      let data = await commentsService.vote(req.body, req.params.id);
+      res.send(data)
+    } catch (error) {
+      next(error)
     }
   }
   async getById(req, res, next) {
