@@ -1,5 +1,5 @@
 <template>
-  <div class="home bg-info setting">
+  <div class="home bg-info setting container-fluid">
     <img alt src />
     <h1 class="text-center">Lagoon Park</h1>
     <posts />

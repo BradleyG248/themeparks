@@ -1,11 +1,9 @@
 <template>
   <div class="component">
-    <div class="container">
-      <div class="row">
-        <post v-for="(postObj) in posts" :key="postObj.id" :postData="postObj" />
-      </div>
-      <div class="row"></div>
+    <div class="row pl-3 pr-3">
+      <post v-for="(postObj) in posts" :key="postObj.id" :postData="postObj" />
     </div>
+    <div class="row"></div>
   </div>
 </template>
 
