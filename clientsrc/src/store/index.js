@@ -33,7 +33,7 @@ let cApi = Axios.create({
 export default new Vuex.Store({
   state: {
     profile: {},
-    posts: [],
+    posts: [{"title": "great thunder is great", "description": "was thunderous", "imgUrl": ""}],
     comments: [],
     activePost: {}
   },
@@ -108,7 +108,6 @@ export default new Vuex.Store({
 
     async deletePostById({ commit }, id) {
       let res = await pApi.delete(id);
-      console.log(res);
       commit("setActivePost", null);
       router.push({ name: "Home" });
       return res;

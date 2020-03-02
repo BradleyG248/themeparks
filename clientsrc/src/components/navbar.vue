@@ -74,6 +74,7 @@ export default {
 .query {
   max-width: 50%;
 }
+
 nav {
   background: rgb(186, 27, 29);
   background: linear-gradient(
@@ -85,4 +86,5 @@ nav {
 button.navbar-toggler {
   box-shadow: white;
 }
+
 </style>
