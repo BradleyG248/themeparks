@@ -54,7 +54,7 @@ export default {
 
 <style scoped>
 .comment-body {
-  width: 85vw;
+  width: 65vw;
   font-size: 0.6rem;
   background-color: rgba(0, 0, 0, 0.4);
   color: white;
