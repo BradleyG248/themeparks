@@ -30,4 +30,7 @@ export default {
 
 
 <style scoped>
+div.card{
+background: rgb(252,117,117);
+background: radial-gradient(circle, rgba(252,117,117,1) 50%, rgba(250,161,55,1) 100%);}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="text-arial" id="app">
     <navbar />
     <router-view />
   </div>
@@ -23,4 +23,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+div.app{
+overscroll-behavior: contain;
+}
+.text-arial{
+  font-family: Arial, Helvetica, sans-serif
+}
+</style>

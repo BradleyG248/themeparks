@@ -49,7 +49,6 @@ export default {
   },
   computed: {
     details() {
-      console.log(this.$route.params.postId);
       return this.$store.state.activePost;
     }
   }

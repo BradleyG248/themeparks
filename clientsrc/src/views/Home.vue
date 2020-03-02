@@ -1,8 +1,8 @@
 <template>
-  <div class="home bg-info setting container-fluid">
+  <div class="home setting container-fluid" id="lagoonUrl">
     <img alt src />
     <h1 class="text-center">Lagoon Park</h1>
-    <posts />
+    <posts id="postOpa" />
   </div>
 </template>
 
@@ -21,8 +21,18 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .setting {
-  height: 100rem;
+  height: 100vh
 }
+#lagoonUrl{
+ background-image: url("https://i.ytimg.com/vi/AbtiwaJGG3w/maxresdefault.jpg");
+ background-color: #cccccc;
+ background-repeat: no-repeat;
+ background-size: cover;
+}
+#postOpa{
+  opacity: 85%;
+}
+
 </style>
