@@ -48,7 +48,7 @@ export default {
   },
   mounted() {
     let post = this.$store.dispatch("getPostById", this.$route.params.postId);
-    this.$store.dispatch("getComments");
+    this.$store.dispatch("getCommentsByPost", this.$route.params.postId);
   },
   computed: {
     details() {

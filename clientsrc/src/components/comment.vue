@@ -30,8 +30,9 @@ export default {
     }
   },
   methods: {
-    destroy() {
-      this.$store.dispatch("deleteCommentById", this.comment.id);
+    async destroy() {
+      await this.$store.dispatch("deleteCommentById", this.comment.id);
+      await this.$store.dispatch("getCommentsByPost", this.comment.postId);
     },
     vote(vote) {
       console.log(this.CommentData);

@@ -19,11 +19,6 @@ let pApi = Axios.create({
   timeout: 3000,
   withCredentials: true
 });
-let vApi = Axios.create({
-  baseURL: baseUrl + "api/posts/vote",
-  timeout: 3000,
-  withCredentials: true
-});
 let cApi = Axios.create({
   baseURL: baseUrl + "api/comments",
   timeout: 3000,
@@ -115,9 +110,6 @@ export default new Vuex.Store({
     },
     async deleteCommentById({ commit }, id) {
       let res = await cApi.delete(id);
-      let comments = await cApi.get("")
-      commit("setComments", comments.data);
-      console.log(res);
       return res;
     },
     async getPosts({ commit }) {
@@ -137,14 +129,10 @@ export default new Vuex.Store({
     },
     async voteComment({ commit }, votes) {
       let res = await cApi.put("/" + votes.id + "/vote", votes);
-      let comments = await cApi.get("");
-      commit("setComments", comments.data)
-      console.log(comments)
-
     },
-    async getComments({ commit }) {
+    async getCommentsByPost({ commit }, postId) {
       try {
-        let res = await cApi.get("");
+        let res = await pApi.get(postId + "/comments");
         commit("setComments", res.data);
       } catch (error) {
         console.log(error);
