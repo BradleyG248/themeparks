@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-light">
     <router-link class="navbar-brand pl-3 pr-3" :to="{ name: 'Home' }">Lagoon</router-link>
     <button
       class="navbar-toggler border-0"
