@@ -128,6 +128,7 @@ export default new Vuex.Store({
     },
     async voteComment({ commit }, votes) {
       let res = await cApi.put("/" + votes.id + "/vote", votes);
+      //why is there not a get request?
     },
     async getCommentsByPost({ commit }, postId) {
       try {

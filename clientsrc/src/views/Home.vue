@@ -23,7 +23,7 @@ export default {
 </script>
 <style scoped>
 .setting {
-  height: 100vh;
+  height: 100%;
 }
 #lagoonUrl {
   background-image: url("https://i.ytimg.com/vi/AbtiwaJGG3w/maxresdefault.jpg");
@@ -32,7 +32,5 @@ export default {
   background-size: cover;
   background-attachment: fixed;
 }
-#postOpa {
-  /* opacity: 85%; */
-}
+
 </style>

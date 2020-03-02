@@ -1,5 +1,5 @@
 <template>
-  <div class="post-details text-center pt-3">
+  <div class="post-details text-center pt-3" id="psdeets">
     <h1 v-if="details.closed">This post has been deleted!</h1>
     <div v-if="!details.closed">
       <h1>{{details.title}}</h1>
@@ -60,4 +60,10 @@ export default {
   }
 };
 </script>
+
+<style>
+#psdeets{
+  background-color: darkorchid
+}
+</style>
 
