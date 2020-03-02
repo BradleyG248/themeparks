@@ -13,7 +13,7 @@
     </div>
     <h4>{{details.votes}} votes</h4>
 
-    <create-comment class="m-1" />
+    <create-comment class="m-1 mb-4" />
     <comments />
   </div>
 </template>

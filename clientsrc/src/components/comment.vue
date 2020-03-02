@@ -3,11 +3,16 @@
     <div class="col-12">
       <div class="row pb-1">
         <div class="comment-body">
-          <h6>{{comment.description}} -- {{comment.creatorEmail}} -- Votes: {{comment.votes}}</h6>
-          <button class="btn btn-success" @click="vote(comment.votes+1)">+</button>
-          <button class="btn btn-warning" @click="vote(comment.votes -1)">-</button>
+          <h6>
+            {{comment.description}} -- {{comment.creatorEmail}} -- Votes: {{comment.votes}}
+            <button
+              class="btn btn-success mr-2 ml-3"
+              @click="vote(comment.votes+1)"
+            >+</button>
+            <button class="btn btn-warning" @click="vote(comment.votes -1)">-</button>
+            <button class="btn btn-danger ml-3" @click="destroy()">Delete</button>
+          </h6>
         </div>
-        <button class="btn btn-danger" @click="destroy()">Delete</button>
       </div>
     </div>
   </div>
@@ -48,7 +53,7 @@ export default {
 
 <style scoped>
 .comment-body {
-  width: 65vw;
+  width: 85vw;
   font-size: 0.6rem;
   background-color: rgba(0, 0, 0, 0.4);
   color: white;
