@@ -28,7 +28,7 @@ let cApi = Axios.create({
 export default new Vuex.Store({
   state: {
     profile: {},
-    posts: [{"title": "great thunder is great", "description": "was thunderous", "imgUrl": ""}],
+    posts: [],
     comments: [],
     activePost: {}
   },
