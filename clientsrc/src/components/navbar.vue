@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light">
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top">
     <router-link class="navbar-brand pl-3 pr-3" :to="{ name: 'Home' }">Lagoon</router-link>
     <button
       class="navbar-toggler border-0"
@@ -86,5 +86,8 @@ nav {
 button.navbar-toggler {
   box-shadow: white;
 }
-
+.nav-link {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
 </style>
