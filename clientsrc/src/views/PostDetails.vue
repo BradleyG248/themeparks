@@ -5,12 +5,15 @@
       <h1>{{details.title}}</h1>
       <p>{{details.description}}</p>
       <img height="400" class="pic-size" :src="details.imgUrl" alt />
-      <button class="btn btn-success" @click="vote(details.votes++)">+</button>
-      <button class="btn btn-info" @click="vote(details.votes--)">-</button>
-      <button class="btn btn-danger" @click="this.delete">Delete!</button>
-      <h4>{{details.votes}} votes</h4>
     </div>
-    <create-comment />
+    <div class="buttons-details p-1">
+      <button class="btn btn-success m-1" @click="vote(details.votes++)">+</button>
+      <button class="btn btn-info m-1" @click="vote(details.votes--)">-</button>
+      <button class="btn btn-danger m-1" @click="this.delete">Delete!</button>
+    </div>
+    <h4>{{details.votes}} votes</h4>
+
+    <create-comment class="m-1 mb-4" />
     <comments />
   </div>
 </template>
