@@ -27,11 +27,11 @@ export default {
 }
 #lagoonUrl {
   background-image: url("https://i.ytimg.com/vi/AbtiwaJGG3w/maxresdefault.jpg");
-  background-color: #cccccc;
+  background-color: #000000;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  height: 100vh;
-}
 
+  min-height: 100vh;
+}
 </style>

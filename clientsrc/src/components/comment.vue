@@ -4,13 +4,17 @@
       <div class="row pb-1">
         <div class="comment-body">
           <h6>
-            {{comment.description}} -- {{comment.creatorEmail}} -- Votes: {{comment.votes}}
+            {{comment.description}} -- {{comment.creatorEmail}} -- Votes: {{votes}}
             <button
               class="btn btn-success mr-2 ml-3"
-              @click="vote(comment.votes+1)"
+              @click="vote(1)"
             >+</button>
-            <button class="btn btn-warning" @click="vote(comment.votes -1)">-</button>
-            <button class="btn btn-danger ml-3" @click="destroy()">Delete</button>
+            <button class="btn btn-warning" @click="vote(-1)">-</button>
+            <button
+              v-if="$auth.userInfo.email == comment.creatorEmail"
+              class="btn btn-danger ml-3"
+              @click="destroy()"
+            >Delete</button>
           </h6>
         </div>
       </div>
@@ -23,15 +27,27 @@
 export default {
   name: "Comment",
   props: ["commentData"],
+  mounted() {
+    console.log(this.$auth.userInfo.email);
+    console.log(this.comment.creatorEmail);
+  },
   data() {
-    return {
-      votes: this.commentData.votes
-    };
+    return {};
   },
   computed: {
     comment() {
       let comment = this.commentData;
       return comment;
+    },
+    votes() {
+      let value = 0;
+      this.comment.votes.forEach(vote => {
+        value += vote.value;
+      });
+      if (value) {
+        return value;
+      }
+      return 0;
     }
   },
   methods: {
@@ -40,10 +56,7 @@ export default {
       await this.$store.dispatch("getCommentsByPost", this.comment.postId);
     },
     vote(vote) {
-      console.log(this.CommentData);
-      this.comment.votes = vote;
-      let data = { votes: vote, id: this.commentData.id };
-      console.log(data);
+      let data = { vote, id: this.commentData.id };
       this.$store.dispatch("voteComment", data);
     }
   },

@@ -11,13 +11,23 @@ class CommentsService {
     );
     return comments;
   }
-  async vote(data, id) {
-    let update = { votes: data.votes }
-    let comment = await dbContext.Comment.findByIdAndUpdate(id, update);
-    // @ts-ignore
-    comment.body = update.body;
-    await comment.save();
-    return comment;
+  async vote(data, id, email) {
+    if (data.vote > 0) {
+      data.vote = 1;
+    }
+    else {
+      data.vote = -1;
+    }
+    let comment = await dbContext.Comment.findById(id);
+    let vote = comment.votes.findIndex(e => e.email == email);
+    if (vote != -1) {
+      comment.votes[vote].value = data.vote;
+    }
+    else {
+      comment.votes.push({ email, value: data.vote });
+    }
+    let newComment = await dbContext.Comment.findByIdAndUpdate(id, comment, { new: true });
+    return newComment;
   }
   async getById(id) {
     return await dbContext.Comment.findById(id);

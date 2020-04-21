@@ -42,6 +42,11 @@ export default new Vuex.Store({
     addComment(state, comment) {
       state.comments.push(comment);
     },
+    editComment(state, comment) {
+      let index = state.comments.findIndex(c => c.id == comment.id);
+      Vue.set(state.comments, index, comment);
+      state.comments[index] = comment;
+    },
     setPosts(state, posts) {
       state.posts = posts;
     },
@@ -65,15 +70,12 @@ export default new Vuex.Store({
       try {
         let res = await api.get("profile");
         commit("setProfile", res.data);
-        console.log(res.data);
       } catch (error) {
         console.error(error);
       }
     },
     async createPost({ commit }, post) {
       try {
-        console.log("This is totally working!");
-        console.log(post);
         let res = await pApi.post("", post);
         commit("addPost", res.data);
       } catch (error) {
@@ -91,11 +93,9 @@ export default new Vuex.Store({
     async getPostById({ commit }, id) {
       try {
         let res = await pApi.get(id);
-        console.log(id);
 
         //let newPost = res.data.findById({p => id._id = p.id});
         commit("setActivePost", res.data);
-        console.log(res.data);
       } catch (error) {
         console.error(error);
       }
@@ -123,19 +123,18 @@ export default new Vuex.Store({
     async voteById({ commit }, votes) {
       let res = await pApi.put("/" + votes.id + "/vote", votes);
       let posts = await pApi.get("");
-      // console.log(res);
       commit("setPosts", posts);
     },
     async voteComment({ commit }, votes) {
       let res = await cApi.put("/" + votes.id + "/vote", votes);
-      //why is there not a get request?
+      commit("editComment", res.data);
     },
     async getCommentsByPost({ commit }, postId) {
       try {
         let res = await pApi.get(postId + "/comments");
         commit("setComments", res.data);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     }
   },
