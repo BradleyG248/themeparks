@@ -43,8 +43,6 @@ import { getUserData } from "@bcwdev/auth0-vue";
 import addPost from "../components/addPosts";
 export default {
   name: "Navbar",
-  data() {
-  },
   methods: {
     async login() {
       await this.$auth.loginWithPopup();
