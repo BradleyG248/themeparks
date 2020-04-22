@@ -30,8 +30,6 @@
         </li>
       </ul>
       <span class="navbar-text">
-        <input class="query mr-2" v-model="query" placeholder="  search..." />
-        <button class="btn btn-primary mr-4">GO</button>
         <button class="btn btn-success mr-4" @click="login" v-if="!$auth.isAuthenticated">Login</button>
         <button class="btn btn-danger mr-4" @click="logout" v-else>logout</button>
       </span>
@@ -46,9 +44,6 @@ import addPost from "../components/addPosts";
 export default {
   name: "Navbar",
   data() {
-    return {
-      query: ""
-    };
   },
   methods: {
     async login() {
