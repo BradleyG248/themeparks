@@ -45,10 +45,12 @@ export default new Vuex.Store({
     editComment(state, comment) {
       let index = state.comments.findIndex(c => c.id == comment.id);
       Vue.set(state.comments, index, comment);
-      state.comments[index] = comment;
     },
     setPosts(state, posts) {
       state.posts = posts;
+    },
+    editPost(state, post) {
+      state.activePost = post;
     },
     setComments(state, comment) {
       state.comments = comment;
@@ -122,8 +124,7 @@ export default new Vuex.Store({
 
     async voteById({ commit }, votes) {
       let res = await pApi.put("/" + votes.id + "/vote", votes);
-      let posts = await pApi.get("");
-      commit("setPosts", posts);
+      commit("editPost", res.data);
     },
     async voteComment({ commit }, votes) {
       let res = await cApi.put("/" + votes.id + "/vote", votes);

@@ -14,9 +14,9 @@ export class PostsController extends BaseController {
       .get("", this.getAll)
       .get("/:id", this.getById)
       .get("/:id/comments", this.getCommentsByPostId)
-      .put("/:id/vote", this.vote)
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .use(auth0Provider.getAuthorizedUserInfo)
+      .put("/:id/vote", this.vote)
       .post("", this.create)
       .put("/:id", this.edit)
       .delete("/:id", this.delete);
@@ -46,11 +46,10 @@ export class PostsController extends BaseController {
       next(error);
     }
   }
-  async vote(req,res,next){
+  async vote(req, res, next) {
     try {
-     let data = req.body.votes
-      let post = await postsService.editVotes(req.params.id, data)
-      res.send(post)
+      let data = await postsService.editVotes(req.params.id, req.body, req.userInfo.email);
+      res.send(data)
     } catch (error) {
       next(error)
     }
