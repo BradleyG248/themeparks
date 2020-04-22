@@ -11,6 +11,7 @@
       <button class="btn btn-info m-1" @click="vote(-1)">-</button>
       <button class="btn btn-danger m-1" @click="this.delete">Delete!</button>
     </div>
+
     <div class="d-flex flex-column align-items-start justify-content-center ml-2">
       <h4>Creator: {{details.creator.name}}</h4>
       <img class="img-fluid" :src="details.creator.picture" alt />
@@ -34,7 +35,8 @@ export default {
   data() {
     return {
       postData: {},
-      commentData: {}
+      commentData: {},
+      edit: false
     };
   },
 
