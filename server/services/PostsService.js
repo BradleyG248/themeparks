@@ -46,7 +46,7 @@ class PostsService {
     else {
       post.votes.push({ email, value: data.vote });
     }
-    let newPost = await dbContext.Post.findByIdAndUpdate(id, post, { new: true });
+    let newPost = await dbContext.Post.findByIdAndUpdate(id, post, { new: true }).populate("creator", "name picture");
     return newPost;
   }
   async delete(id, email) {

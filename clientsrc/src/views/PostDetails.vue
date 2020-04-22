@@ -4,12 +4,16 @@
     <div v-if="!details.closed">
       <h1>{{details.title}}</h1>
       <p>{{details.description}}</p>
-      <img height="400" class="pic-size" :src="details.imgUrl" alt />
+      <img height="400" class="pic-size img-fluid" :src="details.imgUrl" alt />
     </div>
     <div class="buttons-details p-1">
       <button class="btn btn-success m-1" @click="vote(1)">+</button>
       <button class="btn btn-info m-1" @click="vote(-1)">-</button>
       <button class="btn btn-danger m-1" @click="this.delete">Delete!</button>
+    </div>
+    <div class="d-flex flex-column align-items-start justify-content-center ml-2">
+      <h4>Creator: {{details.creator.name}}</h4>
+      <img class="img-fluid" :src="details.creator.picture" alt />
     </div>
     <h4>{{votes}} votes</h4>
 
@@ -54,6 +58,7 @@ export default {
   },
   computed: {
     details() {
+      console.log("vote");
       return this.$store.state.activePost;
     },
     votes() {
