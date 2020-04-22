@@ -13,7 +13,8 @@ class PostsService {
     return posts;
   }
   async getById(id) {
-    return await dbContext.Post.findById(id);
+    let post = await dbContext.Post.findById(id).populate("creator", "name picture");
+    return post;
   }
   async create(body, email) {
     return await dbContext.Post.create(body);
