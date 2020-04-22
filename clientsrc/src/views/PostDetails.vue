@@ -10,7 +10,9 @@
     <div class="buttons-details p-1">
       <button class="btn btn-success m-1" @click="vote(1)">+</button>
       <button class="btn btn-info m-1" @click="vote(-1)">-</button>
-      <button class="btn btn-danger m-1" @click="this.delete">Delete!</button>
+      <button class="btn btn-danger m-1" 
+        v-if="$auth.userInfo.email == details.creatorEmail" 
+        @click="this.delete">Delete!</button>
     </div>
 
     <div class="d-flex flex-column align-items-start justify-content-center ml-2">
@@ -81,7 +83,8 @@ export default {
 
 <style>
 #psdeets {
-  background-color: darkorchid;
+  background-color: rgb(187, 235, 241);
+  min-height: 100vh;
 }
 </style>
 

@@ -1,11 +1,12 @@
 <template>
   <div class="home setting container-fluid" id="lagoonUrl">
-    <img alt src />
     <h1 class="text-center">Lagoon Park</h1>
-        <div class="search-wrapper">
-          <input type="text" v-model="search" placeholder="  search..." />
-        </div>
-    <posts id="postOpa" />
+    <div class="search-wrapper">
+      <input class="form-control" type="text" v-model="search" placeholder="  search..." />
+    </div>
+    <div class="row">
+      <post v-for="post in filteredList" :key="post.id" :postData="post" />
+    </div>
   </div>
 </template>
 
@@ -13,26 +14,29 @@
 
 <script>
 import Posts from "../components/posts";
+import Post from "../components/post";
 export default {
   name: "Home",
+  mounted() {
+    this.$store.dispatch("getPosts");
+  },
   data() {
     return {
-      search: "",
-      postList: this.$store.state.posts
+      search: ""
     };
   },
   components: {
-    Posts
-  },
-  mounted() {
-    console.log("hi");
-    this.$store.dispatch("getPosts");
+    Posts,
+    Post
   },
   computed: {
     filteredList() {
-      return this.Posts.filter(post => {
-        return post.title.toLowerCase().includes(this.search.toLowerCase())
-      })
+      return this.postList.filter(post => {
+        return post.title.toLowerCase().includes(this.search.toLowerCase());
+      });
+    },
+    postList() {
+      return this.$store.state.posts;
     }
   }
 };
@@ -47,7 +51,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-
+  
   min-height: 100vh;
 }
 </style>

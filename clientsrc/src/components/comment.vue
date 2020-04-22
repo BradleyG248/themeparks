@@ -27,10 +27,7 @@
 export default {
   name: "Comment",
   props: ["commentData"],
-  mounted() {
-    console.log(this.$auth.userInfo.email);
-    console.log(this.comment.creatorEmail);
-  },
+  mounted() {},
   data() {
     return {};
   },

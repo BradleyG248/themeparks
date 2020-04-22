@@ -1,9 +1,9 @@
 <template>
-  <div class="component">
-    <div class="col-12 col-md-6 p-2">
-      <div v-if="!postData.closed" class="card" style="width: 17rem; height: 28rem;">
+  <div v-show="!postData.closed" class="component col-6 col-md-3 p-2">
+    <div>
+      <div v-if="!postData.closed" class="card">
         <router-link :to="{ name:'PostDetails', params:{postId: this.postData._id}}">
-          <img class="card-img-top" :src="postData.imgUrl" alt="Card image cap" />
+          <img class="card-img-top img-fluid" :src="postData.imgUrl" alt="Card image cap" />
         </router-link>
         <div class="card-body">
           <h5 class="card-title">{{postData.title}}</h5>
