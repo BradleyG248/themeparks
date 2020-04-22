@@ -8,6 +8,7 @@
         <div class="card-body">
           <h5 class="card-title">{{postData.title}}</h5>
           <p class="card-text">{{postData.description}}</p>
+          <i class="card-text">{{postData.creatorEmail}}</i>
         </div>
       </div>
     </div>
