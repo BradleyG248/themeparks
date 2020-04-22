@@ -9,6 +9,7 @@
           <h5 class="card-title">{{postData.title}}</h5>
           <p class="card-text">{{postData.description}}</p>
         </div>
+        <button @click="edit = !edit" class="btn btn-warning">Edit</button>
       </div>
     </div>
   </div>
@@ -20,7 +21,9 @@ export default {
   name: "Post",
   props: ["postData"],
   data() {
-    return {};
+    return {
+      edit: false
+    };
   },
   computed: {},
   methods: {},
@@ -30,7 +33,12 @@ export default {
 
 
 <style scoped>
-div.card{
-background: rgb(252,117,117);
-background: radial-gradient(circle, rgba(252,117,117,1) 50%, rgba(250,161,55,1) 100%);}
+div.card {
+  background: rgb(252, 117, 117);
+  background: radial-gradient(
+    circle,
+    rgba(252, 117, 117, 1) 50%,
+    rgba(250, 161, 55, 1) 100%
+  );
+}
 </style>
