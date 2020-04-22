@@ -21,14 +21,12 @@ class PostsService {
 
   }
   async edit(id, update, email) {
-    let post = await dbContext.Post.findByIdAndUpdate(id, update);
+    let post = await dbContext.Post.findByIdAndUpdate(id, update, { new: true }).populate("creator", "name picture");
     // @ts-ignore
     if (post.creatorEmail != email) {
       throw new UnAuthorized();
     }
     // @ts-ignore
-    post.body = update.body;
-    await post.save();
     return post;
   }
   async editVotes(id, data, email) {

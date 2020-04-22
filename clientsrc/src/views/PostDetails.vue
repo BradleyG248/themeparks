@@ -63,7 +63,6 @@ export default {
   },
   computed: {
     details() {
-      console.log("vote");
       return this.$store.state.activePost;
     },
     votes() {

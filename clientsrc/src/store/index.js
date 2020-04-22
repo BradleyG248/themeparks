@@ -92,6 +92,14 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
+    async editPost({ commit }, post) {
+      try {
+        let res = await pApi.put(post.id, post);
+        commit("editPost", res.data);
+      } catch (error) {
+        console.error(error)
+      }
+    },
     async getPostById({ commit }, id) {
       try {
         let res = await pApi.get(id);
