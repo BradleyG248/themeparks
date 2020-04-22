@@ -6,6 +6,7 @@
       <p>{{details.description}}</p>
       <img height="400" class="pic-size img-fluid" :src="details.imgUrl" alt />
     </div>
+    <edit-post :postData="details" />
     <div class="buttons-details p-1">
       <button class="btn btn-success m-1" @click="vote(1)">+</button>
       <button class="btn btn-info m-1" @click="vote(-1)">-</button>
@@ -29,6 +30,7 @@
 import Post from "../components/post";
 import Comments from "../components/comments";
 import CreateComment from "../components/createComment";
+import EditPost from "../components/editPost";
 
 export default {
   name: "PostDetails",
@@ -52,7 +54,8 @@ export default {
   components: {
     Post,
     Comments,
-    CreateComment
+    CreateComment,
+    EditPost
   },
   mounted() {
     let post = this.$store.dispatch("getPostById", this.$route.params.postId);
