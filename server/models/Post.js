@@ -1,11 +1,18 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
+const VoteReg = new Schema(
+  {
+    email: { type: String, required: true },
+    value: { type: Number, default: 0 }
+  }
+)
+
 const Post = new Schema(
   {
     title: { type: String, required: true },
     closed: { type: Boolean, default: false },
-    votes: { type: Number, default: 0 },
+    votes: [VoteReg],
     imgUrl: { type: String },
     description: { type: String, required: true },
     creatorEmail: { type: String, required: true },

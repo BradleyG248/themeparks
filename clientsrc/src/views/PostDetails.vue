@@ -7,11 +7,11 @@
       <img height="400" class="pic-size" :src="details.imgUrl" alt />
     </div>
     <div class="buttons-details p-1">
-      <button class="btn btn-success m-1" @click="vote(details.votes++)">+</button>
-      <button class="btn btn-info m-1" @click="vote(details.votes--)">-</button>
+      <button class="btn btn-success m-1" @click="vote(1)">+</button>
+      <button class="btn btn-info m-1" @click="vote(-1)">-</button>
       <button class="btn btn-danger m-1" @click="this.delete">Delete!</button>
     </div>
-    <h4>{{details.votes}} votes</h4>
+    <h4>{{votes}} votes</h4>
 
     <create-comment class="m-1 mb-4" />
     <comments />
@@ -39,9 +39,8 @@ export default {
       this.$store.dispatch("deletePostById", this.$route.params.postId);
     },
     vote(vote) {
-      console.log(vote);
-      this.details.vote = vote;
-      this.$store.dispatch("voteById", this.details);
+      let info = { id: this.$route.params.postId, vote };
+      this.$store.dispatch("voteById", info);
     }
   },
   components: {
@@ -56,14 +55,24 @@ export default {
   computed: {
     details() {
       return this.$store.state.activePost;
+    },
+    votes() {
+      let total = 0;
+      this.details.votes.forEach(vote => {
+        total += vote.value;
+      });
+      if (total) {
+        return total;
+      }
+      return 0;
     }
   }
 };
 </script>
 
 <style>
-#psdeets{
-  background-color: darkorchid
+#psdeets {
+  background-color: darkorchid;
 }
 </style>
 

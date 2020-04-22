@@ -9,7 +9,6 @@
           <h5 class="card-title">{{postData.title}}</h5>
           <p class="card-text">{{postData.description}}</p>
         </div>
-        <button @click="edit = !edit" class="btn btn-warning">Edit</button>
       </div>
     </div>
   </div>
@@ -21,9 +20,7 @@ export default {
   name: "Post",
   props: ["postData"],
   data() {
-    return {
-      edit: false
-    };
+    return {};
   },
   computed: {},
   methods: {},
