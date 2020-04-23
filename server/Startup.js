@@ -3,14 +3,14 @@ import cors from "cors";
 import express from "express";
 import helmet from "helmet";
 import { RegisterControllers, Paths } from "../Setup";
-import auth0Provider from "@bcwdev/auth0Provider";
+import auth0Provider from "@bcwdev/auth0provider";
 
 export default class Startup {
   static ConfigureGlobalMiddleware(app) {
     // NOTE Configure and Register Middleware
     let whitelist = ["http://localhost:8080"];
     let corsOptions = {
-      origin: function(origin, callback) {
+      origin: function (origin, callback) {
         let originIsWhitelisted = whitelist.indexOf(origin) !== -1;
         callback(null, originIsWhitelisted);
       },
