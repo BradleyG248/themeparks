@@ -30,6 +30,8 @@ export default new Vuex.Store({
     profile: {},
     posts: [],
     comments: [],
+    followers: [],
+    creators: [],
     activePost: {}
   },
   mutations: {
@@ -57,6 +59,13 @@ export default new Vuex.Store({
     },
     setActivePost(state, post) {
       state.activePost = post;
+    },
+    setCreators(state, creators) {
+      debugger;
+      state.creators = creators;
+    },
+    setFollowers(state, followers) {
+      state.followers = followers;
     }
   },
   actions: {
@@ -144,6 +153,29 @@ export default new Vuex.Store({
         commit("setComments", res.data);
       } catch (error) {
         console.error(error);
+      }
+    },
+    async followUser({ commit }, data) {
+      try {
+        let res = await api.post("/followers", data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getCreators({ commit }) {
+      try {
+        let res = await api.get(`profile/creators`);
+        commit("setCreators", res.data);
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async getFollowers({ commit }) {
+      try {
+        let res = await api.get(`profile/followers`);
+        commit("setFollowers", res.data);
+      } catch (error) {
+        console.error(error)
       }
     }
   },

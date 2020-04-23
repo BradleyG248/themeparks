@@ -22,9 +22,10 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path:"/post/:postId",
-    name:"PostDetails",
-    component: PostDetails
+    path: "/post/:postId",
+    name: "PostDetails",
+    component: PostDetails,
+    beforeEnter: authGuard
   }
 ];
 
