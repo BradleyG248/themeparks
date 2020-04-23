@@ -4,7 +4,10 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 // @ts-ignore
 import Profile from "../views/Profile.vue";
+// @ts-ignore
+import Followers from "../views/Followers.vue";
 import { authGuard } from "@bcwdev/auth0-vue";
+// @ts-ignore
 import PostDetails from "../views/PostDetails.vue";
 
 Vue.use(VueRouter);
@@ -25,6 +28,12 @@ const routes = [
     path: "/post/:postId",
     name: "PostDetails",
     component: PostDetails,
+    beforeEnter: authGuard
+  },
+  {
+    path: "/followers",
+    name: "Followers",
+    component: Followers,
     beforeEnter: authGuard
   }
 ];
