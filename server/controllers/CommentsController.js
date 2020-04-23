@@ -1,7 +1,7 @@
 import express from "express";
 import BaseController from "../utils/BaseController";
 import { commentsService } from "../services/CommentsService";
-import auth0Provider from "@bcwdev/auth0Provider";
+import auth0Provider from "@bcwdev/auth0provider";
 
 export class CommentsController extends BaseController {
 

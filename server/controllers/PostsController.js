@@ -1,7 +1,7 @@
 import express from "express";
 import BaseController from "../utils/BaseController";
 import { postsService } from "../services/PostsService";
-import auth0Provider from "@bcwdev/auth0Provider";
+import auth0Provider from "@bcwdev/auth0provider";
 import { commentsService } from "../services/CommentsService";
 
 

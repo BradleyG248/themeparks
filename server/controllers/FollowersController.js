@@ -1,7 +1,7 @@
 import express from "express";
 import BaseController from "../utils/BaseController";
 import { followersService } from "../services/FollowersService";
-import auth0Provider from "@bcwdev/auth0Provider";
+import auth0Provider from "@bcwdev/auth0provider";
 
 export class FollowersController extends BaseController {
 

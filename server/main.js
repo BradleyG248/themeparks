@@ -1,5 +1,5 @@
 import express from "express";
-//import Socket from "./services/SocketService";
+import Socket from "./services/SocketService";
 import Startup from "./Startup";
 import DbContext from "./db/DbConfig";
 
@@ -10,7 +10,7 @@ const io = require("socket.io")(socketServer);
 const port = process.env.PORT || 3000;
 
 //Establish Socket
-//Socket.setIO(io);
+Socket.setIO(io);
 Startup.ConfigureGlobalMiddleware(app);
 Startup.ConfigureRoutes(app);
 
