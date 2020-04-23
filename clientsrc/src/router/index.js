@@ -6,9 +6,9 @@ import Home from "../views/Home.vue";
 import Profile from "../views/Profile.vue";
 // @ts-ignore
 import Followers from "../views/Followers.vue";
-import { authGuard } from "@bcwdev/auth0-vue";
 // @ts-ignore
 import PostDetails from "../views/PostDetails.vue";
+import { authGuard } from "@bcwdev/auth0-vue";
 
 Vue.use(VueRouter);
 

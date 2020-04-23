@@ -46,7 +46,6 @@
 
 <script>
 import axios from "axios";
-import { getUserData } from "@bcwdev/auth0-vue";
 import addPost from "../components/addPosts";
 export default {
   name: "Navbar",
