@@ -22,7 +22,7 @@
       <img class="img-fluid" :src="details.creator.picture" alt />
       <button
         v-if="$auth.userInfo.email !== details.creatorEmail && creators"
-        @click="follow(details.creator.email)"
+        @click="follow()"
       >
         <i class="fas fa-camera"></i>
       </button>
@@ -60,8 +60,8 @@ export default {
       let info = { id: this.$route.params.postId, vote };
       this.$store.dispatch("voteById", info);
     },
-    follow(creatorEmail) {
-      let info = { creatorEmail, followerEmail: this.$auth.userInfo.email };
+    follow() {
+      let info = { creatorEmail: this.details.creatorEmail, followerEmail: this.$auth.userInfo.email };
       this.$store.dispatch("followUser", info);
     }
   },
