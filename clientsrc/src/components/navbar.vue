@@ -18,15 +18,22 @@
         <li class="nav-item" :class="{ active: $route.name == 'Home' }">
           <router-link :to="{ name: 'Home' }" class="nav-link">Posts</router-link>
         </li>
-        <li class="nav-item pl-3">
-          <add-post />
-        </li>
         <li
           class="nav-item pl-3"
           v-if="$auth.isAuthenticated"
           :class="{ active: $route.name == 'Profile' }"
         >
           <router-link class="nav-link" :to="{ name: 'Profile' }">Profile</router-link>
+        </li>
+        <li
+          class="nav-item pl-3"
+          v-if="$auth.isAuthenticated"
+          :class="{ active: $route.name == 'Followers' }"
+        >
+          <router-link class="nav-link" :to="{ name: 'Followers' }">Followers</router-link>
+        </li>
+        <li class="nav-item pl-3">
+          <add-post />
         </li>
       </ul>
       <span class="navbar-text">

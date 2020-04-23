@@ -1,12 +1,13 @@
 <template>
-  <div class="post-details text-center pt-3" id="psdeets">
+  <div class="container" id="psdeets">
+  <div class="post-details text-center pt-3">
     <h1 v-if="details.closed">This post has been deleted!</h1>
     <div v-if="!details.closed">
       <h1>{{details.title}}</h1>
       <p>{{details.description}}</p>
       <img height="400" class="pic-size img-fluid" :src="details.imgUrl" alt />
     </div>
-    <edit-post v-show="$auth.userInfo.email == details.creatorEmail" :postData="details" />
+    <edit-post v-if="$auth.userInfo.email == details.creatorEmail" :postData="details" />
     <div class="buttons-details p-1">
       <button class="btn btn-success m-1" @click="vote(1)">+</button>
       <button class="btn btn-info m-1" @click="vote(-1)">-</button>
@@ -31,6 +32,7 @@
 
     <create-comment class="m-1 mb-4" />
     <comments />
+  </div>
   </div>
 </template>
 
@@ -91,7 +93,6 @@ export default {
       return 0;
     },
     creators() {
-      debugger;
       let creators = this.$store.state.creators;
       creators = creators.filter(
         c => c.followerEmail != this.$auth.userInfo.email
@@ -109,6 +110,7 @@ export default {
 #psdeets {
   background-color: rgb(187, 235, 241);
   min-height: 100vh;
+  min-width: 100vw;
 }
 </style>
 

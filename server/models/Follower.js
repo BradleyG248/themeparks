@@ -21,4 +21,5 @@ Follower.virtual("follower", {
   justOne: true
 });
 
+Follower.index({ followerEmail: 1, creatorEmail: 1 }, { unique: true });
 export default Follower;

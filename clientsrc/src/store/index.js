@@ -61,7 +61,6 @@ export default new Vuex.Store({
       state.activePost = post;
     },
     setCreators(state, creators) {
-      debugger;
       state.creators = creators;
     },
     setFollowers(state, followers) {
