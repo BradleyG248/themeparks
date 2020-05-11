@@ -9,8 +9,10 @@
 <script>
 export default {
   name: "Profile",
-  mounted() {
+  async mounted() {
+    if(await this.$auth.isAuthenticated){
     this.$store.dispatch("getFollowers", this.$auth.userInfo.email);
+    }
   },
   computed: {
     profile() {

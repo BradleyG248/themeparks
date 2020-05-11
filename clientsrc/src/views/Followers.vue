@@ -31,9 +31,11 @@
 <script>
 export default {
   name: 'followers',
-  mounted(){
+  async mounted(){
+    if (await this.$auth.isAuthenticated){
     this.$store.dispatch("getCreators");
     this.$store.dispatch("getFollowers");
+    }
   },
   data(){
     return {}

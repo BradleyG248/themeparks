@@ -1,38 +1,35 @@
 <template>
   <div class="container" id="psdeets">
-  <div class="post-details text-center pt-3">
-    <h1 v-if="details.closed">This post has been deleted!</h1>
-    <div v-if="!details.closed">
-      <h1>{{details.title}}</h1>
-      <p>{{details.description}}</p>
-      <img height="400" class="pic-size img-fluid" :src="details.imgUrl" alt />
-    </div>
-    <edit-post v-if="$auth.userInfo.email == details.creatorEmail" :postData="details" />
-    <div class="buttons-details p-1">
-      <button class="btn btn-success m-1" @click="vote(1)">+</button>
-      <button class="btn btn-info m-1" @click="vote(-1)">-</button>
-      <button
-        class="btn btn-danger m-1"
-        v-if="$auth.userInfo.email == details.creatorEmail"
-        @click="this.delete"
-      >Delete!</button>
-    </div>
+    <div class="post-details text-center pt-3">
+      <h1 v-if="details.closed">This post has been deleted!</h1>
+      <div v-if="!details.closed">
+        <h1>{{details.title}}</h1>
+        <p>{{details.description}}</p>
+        <img height="400" class="pic-size img-fluid" :src="details.imgUrl" alt />
+      </div>
+      <edit-post v-if="$auth.userInfo.email == details.creatorEmail" :postData="details" />
+      <div class="buttons-details p-1">
+        <button class="btn btn-success m-1" @click="vote(1)">+</button>
+        <button class="btn btn-info m-1" @click="vote(-1)">-</button>
+        <button
+          class="btn btn-danger m-1"
+          v-if="$auth.userInfo.email == details.creatorEmail"
+          @click="this.delete"
+        >Delete!</button>
+      </div>
 
-    <div class="d-flex flex-column align-items-start justify-content-center ml-2">
-      <h4>Creator: {{details.creator.name}}</h4>
-      <img class="img-fluid" :src="details.creator.picture" alt />
-      <button
-        v-if="$auth.userInfo.email !== details.creatorEmail && creators"
-        @click="follow()"
-      >
-        <i class="fas fa-camera"></i>
-      </button>
-    </div>
-    <h4>{{votes}} votes</h4>
+      <div class="d-flex flex-column align-items-start justify-content-center ml-2">
+        <h4>Creator: {{details.creator.name}}</h4>
+        <img class="img-fluid" :src="details.creator.picture" alt />
+        <button v-if="$auth.userInfo.email !== details.creatorEmail && creators" @click="follow()">
+          <i class="fas fa-camera"></i>
+        </button>
+      </div>
+      <h4>{{votes}} votes</h4>
 
-    <create-comment class="m-1 mb-4" />
-    <comments />
-  </div>
+      <create-comment class="m-1 mb-4" />
+      <comments />
+    </div>
   </div>
 </template>
 
@@ -63,7 +60,10 @@ export default {
       this.$store.dispatch("voteById", info);
     },
     follow() {
-      let info = { creatorEmail: this.details.creatorEmail, followerEmail: this.$auth.userInfo.email };
+      let info = {
+        creatorEmail: this.details.creatorEmail,
+        followerEmail: this.$auth.userInfo.email
+      };
       this.$store.dispatch("followUser", info);
     }
   },
@@ -73,10 +73,12 @@ export default {
     CreateComment,
     EditPost
   },
-  mounted() {
+  async mounted() {
     let post = this.$store.dispatch("getPostById", this.$route.params.postId);
     this.$store.dispatch("getCommentsByPost", this.$route.params.postId);
-    this.$store.dispatch("getCreators");
+    if (await this.$auth.isAuthenticated) {
+      this.$store.dispatch("getCreators");
+    }
   },
   computed: {
     details() {
